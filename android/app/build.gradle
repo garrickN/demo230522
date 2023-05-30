@@ -88,13 +88,6 @@ def reactNativeArchitectures() {
     return value ? value.split(",") : ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"]
 }
 
-def enableSeparateBuildPerCPUArchitecture = true
-
-/**
- * Run Proguard to shrink the Java bytecode in release builds.
- */
-def enableProguardInReleaseBuilds = true
-
 android {
     ndkVersion rootProject.ext.ndkVersion
 

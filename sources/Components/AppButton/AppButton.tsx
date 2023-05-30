@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
 
 const AppButton = (props: {
   onPress: ((event: GestureResponderEvent) => void) | undefined;
-  disabled: boolean | undefined;
-  label:
+  disabled?: boolean | undefined;
+  label?:
     | string
     | number
     | boolean

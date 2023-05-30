@@ -1,7 +1,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
-//const windowHeight = Dimensions.get('window').height;
+const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
@@ -19,15 +19,15 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     item: {
-        marginVertical: 8,
-        marginHorizontal: 16,
-        backgroundColor: 'red',
+        height: windowHeight / 8,
+        justifyContent: 'center',
+        //alignItems: 'center',
     },
     viewIcon: {
-        width: 44,
-        height: 44,
-        borderRadius: 44 / 2,
-        margin: 5,
+        width: windowHeight / 12,
+        height: windowHeight / 12,
+        borderRadius: (windowHeight / 12) / 2,
+        marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'purple',
@@ -36,12 +36,19 @@ const styles = StyleSheet.create({
     viewDetail: {
         marginVertical: 10,
         marginLeft: 16,
-        width: windowWidth * 80 / 100,
-        paddingBottom: 5,
+        width: windowWidth * 70 / 100,
+        paddingBottom: 2.5,
         borderBottomColor: 'red',
         borderBottomWidth: 0.5,
     },
-    row: {
+    rowSearch: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginBottom: 10,
+    },
+    rowItem: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',

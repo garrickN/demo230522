@@ -9,11 +9,11 @@ const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName='Login'>
-      <Stack.Screen name='Login' component={LoginPage} options={{headerShown:false}}></Stack.Screen>
-      <Stack.Screen name='Contact' component={MyContactsScreen} options={{headerShown:false}}></Stack.Screen>
-      <Stack.Screen name='Register' component={RegisterPage}></Stack.Screen>
-    </Stack.Navigator>
+      <Stack.Navigator initialRouteName='Contact'>
+        <Stack.Screen name='Login' component={LoginPage} options={{headerShown:false}}></Stack.Screen>
+        <Stack.Screen name='Contact' component={MyContactsScreen} options={{headerShown:false}}></Stack.Screen>
+        <Stack.Screen name='Register' component={RegisterPage}></Stack.Screen>
+      </Stack.Navigator>
   </NavigationContainer>
   
 )

@@ -1,10 +1,27 @@
-import React from 'react';
+import React , 
+  {
+  useEffect, 
+  useImperativeHandle, 
+  forwardRef
+} from 'react';
+
 import {
   StyleSheet,
   Text,
   TextInput,
   View,
 } from 'react-native';
+
+export type IInputValid ={
+  value?: number,
+  label?: string,
+  placeHolder?: string,
+  onChangeTextCallback?: (text: string) => void,
+}
+export type OInputValid = {
+  getValue:  string,
+  getValid: boolean,
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -32,31 +49,36 @@ const styles = StyleSheet.create({
   },
 });
 
-const AppTextInput = (props: {
-  label:
-    | string
-    | number
-    | boolean
-    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-    | React.ReactFragment
-    | React.ReactPortal
-    | null
-    | undefined;
-  placeholder: string | undefined;
-  value: string | undefined;
-  onChangeText: ((text: string) => void) | undefined;
-}) => {
+const AppTextInput = forwardRef<OInputValid, IInputValid>((props, ref) => {
+    const {value} = props
+    const [input, setInput] = React.useState<string>('')
+    const [valid, setValid] = React.useState<boolean>(false)
+
+    useEffect(()=>{
+        if(input.length >= value! ?? 0){
+            setValid(true)
+        }else setValid(false)
+    },[value,input])
+
+    useImperativeHandle(ref,() => ({ 
+        getValue: input, 
+        getValid: valid
+    }), [input, valid])
+
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{props.label}</Text>
       <TextInput
         style={styles.inputForm}
-        placeholder={props.placeholder}
-        value={props.value}
-        onChangeText={props.onChangeText}
+        placeholder={props.placeHolder}
+        value={input}
+        onChangeText={(e => {
+          setInput(e)
+          props.onChangeTextCallback!(e)
+        })}
       />
     </View>
-  );
-};
+  )
+})
 
-export default AppTextInput;
+export default React.memo(AppTextInput);

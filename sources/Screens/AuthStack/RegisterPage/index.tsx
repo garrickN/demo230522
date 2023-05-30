@@ -10,8 +10,8 @@ import {
   View,
 } from 'react-native';
 import styles from './style';
-import Button1 from '../../../Components/AppButton/Button';
-import TextInput1 from '../../../Components/AppTextInput/AppTextInput';
+import AppButton from '../../../Components/AppButton/AppButton';
+import AppTextInput, { OInputValid } from '../../../Components/AppTextInput/AppTextInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface RegisterScreenProps {
@@ -24,9 +24,13 @@ const RegisterPage = (props: RegisterScreenProps) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [fullname, setFullname] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [registerFailed, setRegisterFailed] = useState(true);
+
+  const [inputRef, setInputRef] = React.useState<OInputValid | null>();
+  const [inputPasswordRef, setInputPasswordRef] = React.useState<OInputValid | null>();
+  const getValue = React.useMemo(()=> inputRef?.getValue,[inputRef])
+  const getPasswordValue = React.useMemo(()=> inputPasswordRef?.getValue,[inputPasswordRef])
+  const getValid = React.useMemo(()=> inputRef?.getValid,[inputRef])
+  const getPasswordValid = React.useMemo(()=> inputPasswordRef?.getValid,[inputPasswordRef])
 
   console.log(
     email.length,
@@ -34,6 +38,8 @@ const RegisterPage = (props: RegisterScreenProps) => {
     confirmPassword.length,
     fullname.length,
     phoneNumber.length,
+    "acc", getValue, getValid, 
+    "pass", getPasswordValue, getPasswordValid,
   );
 
   const setData = async () => {
@@ -53,39 +59,33 @@ const RegisterPage = (props: RegisterScreenProps) => {
         phoneNumber,
       );
     } catch (error) {
-      setRegisterFailed(false);
       createFailedAlert();
       console.log('Lỗi khi lưu giá trị:', error);
     }
   };
 
-  const handleEmailInputChange = (text: React.SetStateAction<string>) => {
+  function handleEmailInputChange(text: string){
     setEmail(text);
-    setButtonDisabled(!(text.length === 6 && password.length === 6));
   };
 
-  const handlePasswordInputChange = (text: React.SetStateAction<string>) => {
+  function handlePasswordInputChange(text: string){
     setPassword(text);
-    setButtonDisabled(!(email.length === 6 && text.length === 6));
-  };
-  const handleConfirmPasswordInputChange = (
-    text: React.SetStateAction<string>,
-  ) => {
-    setConfirmPassword(text);
-    setButtonDisabled(!(email.length === 6 && password.length === 6));
   };
 
-  const handleFullnameInputChange = (text: React.SetStateAction<string>) => {
-    setFullname(text);
-    setButtonDisabled(!(email.length === 6 && password.length === 6));
+  function handleConfirmPasswordInputChange(text: string){
+    setConfirmPassword(text);
   };
-  const handlePhoneNumberInputChange = (text: React.SetStateAction<string>) => {
+
+  function handleFullnameInputChange(text: string){
+    setFullname(text);
+  };
+
+  function handlePhoneNumberInputChange(text: string){
     setPhoneNumber(text);
-    setButtonDisabled(!(password.length === 6 && email.length === 6));
   };
 
   const login = () => {
-    if (buttonDisabled) {
+    if (getValid && getPasswordValid) {
       setData();
       console.log('Regis Success');
     } else {createFailedRegisAlert();}
@@ -130,33 +130,32 @@ const RegisterPage = (props: RegisterScreenProps) => {
                   </Text>
                 </View>
                 <View style={styles.view2}>
-                  <TextInput1
+                  <AppTextInput
                     label="Password"
-                    placeholder="Enter password"
-                    value={password}
-                    onChangeText={handlePasswordInputChange} />
-                  <TextInput1
+                    placeHolder="Enter password"
+                    ref = {setInputPasswordRef} 
+                    value = {6}
+                    onChangeTextCallback={handlePasswordInputChange} />
+                  <AppTextInput
                     label="Confirm Password"
-                    placeholder="Confirm Password"
-                    value={confirmPassword}
-                    onChangeText={
+                    placeHolder="Confirm Password"
+                    onChangeTextCallback={
                       handleConfirmPasswordInputChange
                     } />
-                  <TextInput1
+                  <AppTextInput
                     label="Full Name"
-                    placeholder="Enter Full Name"
-                    value={fullname}
-                    onChangeText={handleFullnameInputChange} />
-                  <TextInput1
+                    placeHolder="Enter Full Name"
+                    onChangeTextCallback={handleFullnameInputChange} />
+                  <AppTextInput
                     label="Phone Number"
-                    placeholder="Enter Phone Number"
-                    value={phoneNumber}
-                    onChangeText={handlePhoneNumberInputChange} />
-                  <TextInput1
+                    placeHolder="Enter Phone Number"
+                    onChangeTextCallback={handlePhoneNumberInputChange} />
+                  <AppTextInput
                     label="Email"
-                    placeholder="Enter Your Email"
-                    value={email}
-                    onChangeText={handleEmailInputChange} />
+                    placeHolder="Enter Your Email"
+                    ref = {setInputRef} 
+                    value = {6}
+                    onChangeTextCallback={handleEmailInputChange} />
                 </View>
               </ScrollView>
             </View>
@@ -166,10 +165,9 @@ const RegisterPage = (props: RegisterScreenProps) => {
 
       <View style={styles.container2}>
         <View style={styles.view3}>
-          <Button1
+          <AppButton
             label="Complete Register"
-            onPress={login}
-            disabled={!buttonDisabled} />
+            onPress={login}/>
           <Text style={styles.conditionContainer}>
             By signing in, I agree with Terms of Use and Privacy Policy
           </Text>

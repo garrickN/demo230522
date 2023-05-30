@@ -18,7 +18,7 @@ type ItemProps = {
 
 const Item = ({item, onPress, backgroundColor1, textColor}: ItemProps) => (
   <TouchableOpacity onPress={onPress} style={styles.item}>
-    <View style={[styles.row, {backgroundColor: backgroundColor1}]}>
+    <View style={[styles.rowItem, {backgroundColor: backgroundColor1}]}>
       <View style={[styles.viewIcon]}>
         <Text style={[styles.nameIcon]}>{abbrev_name(item.displayName)}</Text>
       </View>
@@ -87,19 +87,16 @@ const MyContactsScreen = (props: LoginScreenProps) => {
   const renderItem = ({item}: {item: Contact}) => {
     const backgroundColor1 = item.recordID === selectedId ? '#6e3b6e' : 'white';
     const color = item.recordID === selectedId ? 'white' : 'black';
+
     return (
       <Item
         item={item}
         onPress={() => {setSelectedId(item.recordID);}}
-        backgroundColor1={backgroundColor1}
+        backgroundColor1 = {backgroundColor1}
         textColor={color}
       />
     );
   };
-
-
-
-
 
   const convertToPlainString = (str: string) => {
     return unidecode(str);
@@ -137,7 +134,7 @@ const MyContactsScreen = (props: LoginScreenProps) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <View style={styles.row}>
+        <View style={styles.rowSearch}>
           <View style={styles.containerBackBtn}>
             <TouchableOpacity
               onPress={login}>
