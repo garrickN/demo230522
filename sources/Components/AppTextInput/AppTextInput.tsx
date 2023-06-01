@@ -1,5 +1,7 @@
 import React , 
-  {
+{
+  useRef,
+  useState,
   useEffect, 
   useImperativeHandle, 
   forwardRef
@@ -11,17 +13,6 @@ import {
   TextInput,
   View,
 } from 'react-native';
-
-export type IInputValid ={
-  value?: number,
-  label?: string,
-  placeHolder?: string,
-  onChangeTextCallback?: (text: string) => void,
-}
-export type OInputValid = {
-  getValue:  string,
-  getValid: boolean,
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -47,31 +38,63 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     fontSize: 12,
   },
+
+  inputFocused: {
+    // Styling khi TextInput được focus
+    borderColor: 'blue',
+    borderWidth: 2,
+  },
 });
 
+export type IInputValid ={
+  value?: number,
+  label?: string,
+  placeHolder?: string,
+  onChangeTextCallback?: (text: string) => void,
+}
+export type OInputValid = {
+  getValue:  string,
+  getValid: boolean,
+}
+
 const AppTextInput = forwardRef<OInputValid, IInputValid>((props, ref) => {
-    const {value} = props
-    const [input, setInput] = React.useState<string>('')
-    const [valid, setValid] = React.useState<boolean>(false)
+  const {value} = props
+  const [input, setInput] = useState<string>('')
+  const [valid, setValid] = useState<boolean>(false)
+  const [focused, setFocused] = useState(false);
 
-    useEffect(()=>{
-        if(input.length >= value! ?? 0){
-            setValid(true)
-        }else setValid(false)
-    },[value,input])
+  const handleFocus = () => {
+    setFocused(true);
+  };
 
-    useImperativeHandle(ref,() => ({ 
-        getValue: input, 
-        getValid: valid
-    }), [input, valid])
+  const handleBlur = () => {
+    setFocused(false);
+  };
+
+  useEffect(()=>{
+    if(input.length >= value! ?? 0)
+    {
+        setValid(true)
+    }
+    else setValid(false)
+  },[value,input])
+
+  useImperativeHandle(ref,() => ({ 
+      getValue: input, 
+      getValid: valid
+  }), [input, valid])
 
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{props.label}</Text>
       <TextInput
-        style={styles.inputForm}
+        {...props}
+        style={[styles.inputForm, focused && styles.inputFocused]}
         placeholder={props.placeHolder}
         value={input}
+        blurOnSubmit={false}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         onChangeText={(e => {
           setInput(e)
           props.onChangeTextCallback!(e)

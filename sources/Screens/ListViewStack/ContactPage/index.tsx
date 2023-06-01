@@ -5,7 +5,7 @@ import styles from './style';
 import abbrev_name from '../../../Utils/GenerateName';
 import unidecode from 'unidecode';
 
-interface LoginScreenProps {
+interface ContactScreenProps {
   navigation: any;
 }
 
@@ -30,10 +30,11 @@ const Item = ({item, onPress, backgroundColor1, textColor}: ItemProps) => (
   </TouchableOpacity>
 );
 
-const MyContactsScreen = (props: LoginScreenProps) => {
+const MyContactsScreen = (props: ContactScreenProps) => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState<Contact[]>([]);
   const [masterDataSource, setMasterDataSource] = useState<Contact[]>([]);
+  const [selectedId, setSelectedId] = useState<string>();
 
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [iconsColor, setIcons] = useState([]);
@@ -45,7 +46,7 @@ const MyContactsScreen = (props: LoginScreenProps) => {
       title: 'Contacts',
       message: 'This app would like to view your contacts.',
       buttonPositive: 'Please accept bare mortal',
-  })
+      })
       .then((res) => {
           console.log('Permission: ', res);
           Contacts.getAll()
@@ -63,39 +64,47 @@ const MyContactsScreen = (props: LoginScreenProps) => {
       })
       .catch((error) => {
           console.error('Permission error: ', error);
-      });
+    });
 
-      const backAction = () => {
-        Alert.alert('Hold on!', 'Are you sure you want to go back?', [
-          {
-            text: 'Cancel',
-            onPress: () => null,
-            style: 'cancel',
-          },
-          {text: 'YES', onPress: () => BackHandler.exitApp()},
-        ]);
-        return true;
-      };
-      const backHandler = BackHandler.addEventListener(
-        'hardwareBackPress',
-        backAction,
-      );
-      return () => backHandler.remove();
+    const backAction = () => {
+      Alert.alert('Hold on!', 'Are you sure you want to go back?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {text: 'YES', onPress: () => BackHandler.exitApp()},
+      ]);
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+    return () => backHandler.remove();
   }, []);
-
 
   const renderItem = ({item}: {item: Contact}) => {
     const backgroundColor1 = item.recordID === selectedId ? '#6e3b6e' : 'white';
     const color = item.recordID === selectedId ? 'white' : 'black';
+    let contact = contacts.find(elements => elements.recordID === item.recordID);
 
     return (
       <Item
         item={item}
-        onPress={() => {setSelectedId(item.recordID);}}
+        onPress={() => {
+          handleSelectItem(item.recordID, contact!)
+          console.log(contact);
+        }}
         backgroundColor1 = {backgroundColor1}
         textColor={color}
       />
     );
+  };
+
+  function handleSelectItem(contactId: string, contact: Contact) {
+    setSelectedId(contactId);
+    getInformation(contact);
   };
 
   const convertToPlainString = (str: string) => {
@@ -129,7 +138,12 @@ const MyContactsScreen = (props: LoginScreenProps) => {
     }
   };
 
-  const [selectedId, setSelectedId] = useState<string>();
+  function getInformation(contact: Contact) {
+    props.navigation.navigate(
+      'Information',
+      { contact },
+    );
+  }
 
   return (
     <SafeAreaView>
@@ -160,7 +174,6 @@ const MyContactsScreen = (props: LoginScreenProps) => {
         />
       </View>
     </SafeAreaView>
-
   );
 };
 

@@ -1077,6 +1077,11 @@
     deepmerge "^3.2.0"
     hoist-non-react-statics "^3.3.0"
 
+"@dvh-module/native-common@^0.1.7":
+  version "0.1.7"
+  resolved "https://registry.npmjs.org/@dvh-module/native-common/-/native-common-0.1.7.tgz"
+  integrity sha512-W5Y3DQIQp1lsY+LEE76qs77Fc9fi2eYditlypT7R8t3FCPCm48H9uljOQdGsx2gY+diGT1kBVdzpR07c8BTrvQ==
+
 "@egjs/hammerjs@^2.0.17":
   version "2.0.17"
   resolved "https://registry.npmjs.org/@egjs/hammerjs/-/hammerjs-2.0.17.tgz"
@@ -1742,6 +1747,25 @@
     color "^4.2.3"
     warn-once "^0.1.0"
 
+"@rn-base/core@^1.0.0-alpha.1":
+  version "1.0.0-alpha.1"
+  resolved "https://registry.npmjs.org/@rn-base/core/-/core-1.0.0-alpha.1.tgz"
+  integrity sha512-K9LokqHJ2RVXKMb7+jpYmW+JFfbiQfZ1kHJ3EyU4KzIN9odS+OEihThW80wBIQorSWPyQQD6Fnh19kdyUxfaAQ==
+  dependencies:
+    lodash "^4.17.21"
+
+"@rn-base/element@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@rn-base/element/-/element-1.0.0.tgz"
+  integrity sha512-R/NKzT+aWIdrm0wOCPYNtiAEV2iMmREnceSVC7MMw4A+5EwlqYKX6ARNu/C8OXCA6NMPc2lsOeavBw+e62nTjg==
+  dependencies:
+    lodash.isequal "^4.5.0"
+
+"@rn-base/splash@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@rn-base/splash/-/splash-1.0.0.tgz"
+  integrity sha512-QMgBHnOAisxImjgZZ7u0jnKxGiZhPfHAEP2AvEEZMk/a1eJdMNfrW3kSdQyCL32NIj4Is8WTRKW8MUneTn3SMw==
+
 "@sideway/address@^4.1.3":
   version "4.1.4"
   resolved "https://registry.npmjs.org/@sideway/address/-/address-4.1.4.tgz"
@@ -2268,7 +2292,7 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-axios@^1.4.0:
+axios@*, axios@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/axios/-/axios-1.4.0.tgz"
   integrity sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==
@@ -4981,6 +5005,11 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
   integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.npmjs.org/lodash.isequal/-/lodash.isequal-4.5.0.tgz"
+  integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
+
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
@@ -5888,6 +5917,16 @@ pkg-dir@^4.2.0:
   integrity sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==
   dependencies:
     find-up "^4.0.0"
+
+pmn-core-module@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/pmn-core-module/-/pmn-core-module-0.1.0.tgz"
+  integrity sha512-W+p0zKnfzoOq9cgAEV7Wz8qFLckcxtxVuDRRUtotX9L0BPSjjjdpzS1vFXAfVkfq56+hNyHLK0F8ju/PfKVoEg==
+  dependencies:
+    "@dvh-module/native-common" "^0.1.7"
+    "@rn-base/core" "^1.0.0-alpha.1"
+    "@rn-base/element" "^1.0.0"
+    "@rn-base/splash" "^1.0.0"
 
 posix-character-classes@^0.1.0:
   version "0.1.1"
