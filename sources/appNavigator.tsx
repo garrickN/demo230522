@@ -32,7 +32,7 @@ const closeConfig = {
 
 const AppNavigator = () => (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Contact'
+      <Stack.Navigator initialRouteName='Login'
         screenOptions={{
           gestureEnabled: true,
           gestureDirection: 'horizontal',
