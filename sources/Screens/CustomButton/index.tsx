@@ -1,6 +1,6 @@
-import React from "react";
-import { Alert, Button, Image, Keyboard, KeyboardAvoidingView, Platform, SafeAreaView, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
-import styles from "./style";
+import React from 'react';
+import { Image, SafeAreaView, Text, TouchableOpacity, View } from 'react-native';
+import styles from './style';
 
 
 export default function CustomButtonPage() {

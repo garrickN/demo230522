@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList, Text, View, PermissionsAndroid, TouchableOpacity, TextInput, SafeAreaView, Alert, BackHandler, Image} from 'react-native';
-import Contacts , {Contact} from 'react-native-contacts';
+import React from 'react';
+import { Text, View, TouchableOpacity, SafeAreaView, Image} from 'react-native';
+
 import styles from './style';
-import abbrev_name from '../../../Utils/GenerateName';
-import unidecode from 'unidecode';
 import AppHeaderBar from '../../../Components/AppHeaderBar/AppHeaderBar';
-import { Box, Input } from 'pmn-core-module';
 
 interface InformationScreenProps {
     route: any;
@@ -16,11 +13,11 @@ const ItemInformation = (props: any) =>{
     return (
         <View style={styles.viewItemInformation}>
             <View style={styles.viewItemAvatar}>
-                <Image  
+                <Image
                 style={styles.avatarIcon}
                 source={props.source}/>
                 <TouchableOpacity style={styles.viewTouch}>
-                    <Image  
+                    <Image
                     style={styles.cameraIcon}
                     source={props.source2}/>
                 </TouchableOpacity>
@@ -28,10 +25,10 @@ const ItemInformation = (props: any) =>{
             <View>
                 <Text style={styles.textName}>{props.name}</Text>
                 <Text style={styles.textNumber}>{props.number}</Text>
-            </View>         
+            </View>
         </View>
     );
-}
+};
 
 const ItemTask = (props: any) =>{
     return (
@@ -40,35 +37,34 @@ const ItemTask = (props: any) =>{
                 <View style={styles.viewNameItemTask}>
                     <Text style={props.styleName}>{props.nameTask}</Text>
                     {props.nameIcon}
-                </View>    
+                </View>
                 <View style={styles.viewIconTask}>
                     <TouchableOpacity>
-                        <Image  
+                        <Image
                         style={props.styleButton ?? styles.nextPageButton}
                         source={props.source ?? require('../../../Assets/Images/next.png')}/>
                     </TouchableOpacity>
                     {props.itemIcon}
-                </View> 
+                </View>
             </View>
             <View style={styles.viewItemNoteTask}>
                 {props.contentNote}
             </View>
         </View>
-        
     );
-}
+};
 
 const MyInformationScreen = (props: InformationScreenProps) => {
-    const contact = () => props.navigation.navigate('Contact');
+    //const contact = () => props.navigation.navigate('Contact');
     return (
         <SafeAreaView>
            <View style={styles.viewContainer}>
-                <AppHeaderBar 
-                    label='Thông tin cá nhân'
-                    onPress = {() => props.navigation.navigate("Contact")}    
+                <AppHeaderBar
+                    label="Thông tin cá nhân"
+                    onPress = {() => props.navigation.navigate('Contact')}
                 />
-                <ItemInformation 
-                source = {require('../../../Assets/Images/AvatarIcon.png')} 
+                <ItemInformation
+                source = {require('../../../Assets/Images/AvatarIcon.png')}
                 source2 = {require('../../../Assets/Images/camera.png')}
                 name = {props.route.params.contact.displayName}
                 number = {props.route.params.contact.phoneNumbers[0].number}
@@ -77,8 +73,8 @@ const MyInformationScreen = (props: InformationScreenProps) => {
                 nameTask = "Mã QR của tôi"
                 styleName = {styles.textNameTask}
                 itemIcon = {
-                    <Image  
-                    style={{width: 30, height: 30, tintColor: '#6b6ace', marginTop: 10}}
+                    <Image
+                    style={{}}
                     source={require('../../../Assets/Images/qr-code.png')}/>
                 }/>
                 <ItemTask
@@ -100,8 +96,8 @@ const MyInformationScreen = (props: InformationScreenProps) => {
                 nameTask = "Email"
                 styleName = {styles.textNameTask}
                 nameIcon = {
-                    <Image  
-                    style={{width: 25, height: 25, margin: 15,}}
+                    <Image
+                    style={styles.imageIcon}
                     source={require('../../../Assets/Images/warning.png')}/>
                 }
                 itemIcon = {
@@ -116,6 +112,6 @@ const MyInformationScreen = (props: InformationScreenProps) => {
            </View>
         </SafeAreaView>
     );
-}
+};
 
 export default MyInformationScreen;

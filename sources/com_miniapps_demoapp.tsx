@@ -1,5 +1,5 @@
 import React from 'react';
-import AppNavigator from './sources/appNavigator';
+import { AppNavigator } from './Navigation/appNavigator';
 import { Provider as PaperProvider } from 'react-native-paper';
 
 // import { Provider } from 'react-redux';

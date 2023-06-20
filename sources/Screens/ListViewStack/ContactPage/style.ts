@@ -81,7 +81,13 @@ const styles = StyleSheet.create({
         // backgroundColor: "red",
         width: 20,
         height: 20,
-    }}
-);
+    },
+    imageIcon: {
+        width: 30,
+        height: 30,
+        tintColor: '#6b6ace',
+        marginTop: 10,
+    },
+});
 
 export default styles;

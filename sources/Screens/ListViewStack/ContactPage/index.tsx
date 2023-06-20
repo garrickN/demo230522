@@ -37,7 +37,7 @@ const MyContactsScreen = (props: ContactScreenProps) => {
   const [selectedId, setSelectedId] = useState<string>();
 
   const [contacts, setContacts] = useState<Contact[]>([]);
-  const [iconsColor, setIcons] = useState([]);
+  // const [iconsColor, setIcons] = useState([]);
 
   const login = () => props.navigation.navigate('Login');
 
@@ -93,7 +93,7 @@ const MyContactsScreen = (props: ContactScreenProps) => {
       <Item
         item={item}
         onPress={() => {
-          handleSelectItem(item.recordID, contact!)
+          handleSelectItem(item.recordID, contact!);
           console.log(contact);
         }}
         backgroundColor1 = {backgroundColor1}
@@ -105,7 +105,7 @@ const MyContactsScreen = (props: ContactScreenProps) => {
   function handleSelectItem(contactId: string, contact: Contact) {
     setSelectedId(contactId);
     getInformation(contact);
-  };
+  }
 
   const convertToPlainString = (str: string) => {
     return unidecode(str);

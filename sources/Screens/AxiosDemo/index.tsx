@@ -1,17 +1,15 @@
 import axios from 'axios';
 import React from 'react';
-import { Alert, Button, Image, Keyboard, KeyboardAvoidingView, Platform, SafeAreaView, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Alert, Keyboard, KeyboardAvoidingView, Platform, SafeAreaView, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import styles from './style';
 const baseURL = 'https://jsonplaceholder.typicode.com/posts';
 
 export default function MyApp() {
   const [post, setPost] = React.useState(null);
-  const [error, setError] = React.useState(null);
+  //const [error, setError] = React.useState(null);
 
   // React.useEffect(() => {
   //   console.log("test");
-    
   //   axios.get(`${baseURL}/1`).then((response) => {
   //     setPost(response.data);
   //     console.log("res", response);
@@ -24,8 +22,8 @@ export default function MyApp() {
         // invalid url will trigger an 404 error
     axios.get(`${baseURL}/1`).then((response) => {
         setPost(response.data);
-      }).catch(e => {
-        setError(e);
+      }).catch(() => {
+        //setError(e);
       });
     }
 
@@ -33,18 +31,16 @@ export default function MyApp() {
   }, []);
 
   async function createPost() {
-    console.log(" onpress =>>>>>>>");
-    
+    console.log(' onpress =>>>>>>>');
     axios
       .post(baseURL, {
-        userId: "2",
-        id: "2",
+        userId: '2',
+        id: '2',
         title: 'Hello World!',
         body: 'This is a new post.',
       })
       .then((response) => {
-        console.log("response=>>>>>", response);
-        
+        console.log('response=>>>>>', response);
         setPost(response.data);
       });
   }
@@ -67,7 +63,7 @@ export default function MyApp() {
         console.log('Post deleted!');
       Alert.alert('Delete Notify', 'You are deleted successfully', [
       {
-        text: 'OK', 
+        text: 'OK',
         onPress: () => console.log('OK Pressed'),
       },
       ]);
@@ -84,19 +80,19 @@ export default function MyApp() {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={styles.keyboardAvoidView}>
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-               <View style = {{width: "100%", height: 500, backgroundColor: "red"}}>
+               <View style = {styles.viewText}>
                   <Text>{post?.title}</Text>
                   <Text>{post?.body}</Text>
                   <TouchableOpacity
-                  style={{width:100, height:50, backgroundColor: "pink", marginVertical: 10,}}
+                  style={styles.btnStyle}
                     onPress={() => createPost()}/>
-                  <TouchableOpacity 
-                  style={{width:100, height:50, backgroundColor: "pink", marginVertical: 10,}}
+                  <TouchableOpacity
+                  style={styles.btnStyle}
                     onPress={() => updatePost()}/>
-                  <TouchableOpacity 
-                  style={{width:100, height:50, backgroundColor: "pink", marginVertical: 10,}}
+                  <TouchableOpacity
+                  style={styles.btnStyle}
                     onPress={() => deletePost()}/>
-              </View>  
+              </View>
           </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
 

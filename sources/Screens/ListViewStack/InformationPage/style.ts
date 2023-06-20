@@ -5,7 +5,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     viewContainer: {
-        backgroundColor: "#f6f7f6",
+        backgroundColor: '#f6f7f6',
         height: windowHeight,
         width: windowWidth,
     },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     boxStatus: {
         width: 90,
         height: 20,
-        backgroundColor: "#fde3d1",
+        backgroundColor: '#fde3d1',
         borderRadius: 4,
         justifyContent: 'center',
         alignItems: 'center',
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     },
     textNameTask: {
         fontSize: 16,
-        fontWeight: "normal",
+        fontWeight: 'normal',
         color: 'black',
     },
     textNormalNameTask:{
@@ -136,7 +136,12 @@ const styles = StyleSheet.create({
         height: 15,
         marginHorizontal: 10,
         tintColor: '#3573fb',
-    }
-})
+    },
+    imageIcon: {
+        width: 25,
+        height: 25,
+        margin: 15,
+    },
+});
 
 export default styles;

@@ -17,7 +17,20 @@ const styles = StyleSheet.create({
         top: 0,
         backgroundColor: '#f2f3f3',
     },
-})
+
+    viewText: {
+        width: '100%',
+        height: 500,
+        backgroundColor: 'red',
+    },
+
+    btnStyle: {
+        width:100,
+        height:50,
+        backgroundColor: 'pink',
+        marginVertical: 10,
+    },
+});
 
 export default styles;
 

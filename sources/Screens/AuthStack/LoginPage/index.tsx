@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -14,7 +14,7 @@ import {
 import styles from './style';
 import AppTextInput from '../../../Components/AppTextInput/AppTextInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import InputValid, { OInputValid } from './InputValid';
+import { OInputValid } from './InputValid';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 interface LoginScreenProps {
@@ -27,42 +27,42 @@ const LoginPage = (props: LoginScreenProps) => {
   const [accessAccount, setAccess] = useState(false);
   const [inputRef, setInputRef] = React.useState<OInputValid | null>();
   const [inputPasswordRef, setInputPasswordRef] = React.useState<OInputValid | null>();
-  const getValue = React.useMemo(()=> inputRef?.getValue,[inputRef])
-  const getPasswordValue = React.useMemo(()=> inputPasswordRef?.getValue,[inputPasswordRef])
-  const getValid = React.useMemo(()=> inputRef?.getValid,[inputRef])
-  const getPasswordValid = React.useMemo(()=> inputPasswordRef?.getValid,[inputPasswordRef])
+  const getValue = React.useMemo(()=> inputRef?.getValue,[inputRef]);
+  const getPasswordValue = React.useMemo(()=> inputPasswordRef?.getValue,[inputPasswordRef]);
+  const getValid = React.useMemo(()=> inputRef?.getValid,[inputRef]);
+  const getPasswordValid = React.useMemo(()=> inputPasswordRef?.getValid,[inputPasswordRef]);
 
   React.useEffect(()=> {
-    console.log("acc", getValue, getValid),
-    console.log('pass', getPasswordValue, getPasswordValid)
-  }, [getValue, getPasswordValue, getValid, getPasswordValid])
+    console.log('acc', getValue, getValid);
+    console.log('pass', getPasswordValue, getPasswordValid);
+  }, [getValue, getPasswordValue, getValid, getPasswordValid]);
 
 
   function handleEmailInputChange(text: string){
     setEmail(text);
-  };
+  }
 
   function handlePasswordInputChange(text: string) {
     setPassword(text);
-  };
+  }
 
   const getData = async () => {
     try {
       const dataEmail = await AsyncStorage.getItem('email');
       const dataPassword = await AsyncStorage.getItem('password');
       console.log('data:', dataEmail, dataPassword);
-      if((email == dataEmail) && (password == dataPassword)) {
-        setAccess(true)
-      }else {setAccess(false)}
+      if ((email === dataEmail) && (password === dataPassword)) {
+        setAccess(true);
+      } else {setAccess(false);}
     } catch (e) {
       // error reading value
     }
   };
 
-  const createButtonAlert = () =>
-    Alert.alert('Cảnh báo', 'Bạn nhập thiếu ký tự rồi', [
-      {text: 'OK', onPress: () => console.log('OK Pressed')},
-  ]);
+  // const createButtonAlert = () =>
+  //   Alert.alert('Cảnh báo', 'Bạn nhập thiếu ký tự rồi', [
+  //     {text: 'OK', onPress: () => console.log('OK Pressed')},
+  // ]);
 
   const createAccessAlert = () =>
     Alert.alert(
@@ -78,12 +78,12 @@ const LoginPage = (props: LoginScreenProps) => {
       console.log('Người dùng đã nhấn nút!');
       if (accessAccount) {
         props.navigation.navigate('Contact');
-      } else createAccessAlert();
+      } else {createAccessAlert();}
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.backgroundContainer}>
+      <GestureHandlerRootView style={styles.backgroundContainer}>
         <View style={styles.viewContainer}>
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -108,7 +108,7 @@ const LoginPage = (props: LoginScreenProps) => {
                         <AppTextInput
                           label="Password"
                           placeHolder="Input Password"
-                          ref = {setInputPasswordRef} 
+                          ref = {setInputPasswordRef}
                           value = {6}
                           onChangeTextCallback={handlePasswordInputChange} />
                       </View>
@@ -116,15 +116,15 @@ const LoginPage = (props: LoginScreenProps) => {
                   </View>
                 </ScrollView>
             </TouchableWithoutFeedback>
-          </KeyboardAvoidingView>          
+          </KeyboardAvoidingView>
           <View style = {styles.viewBottomContainer}>
             <TouchableOpacity
               style = {styles.button}
               onPress = {contact}
-              disabled = {(getValid && getPasswordValid)? false : true}
+              disabled = {(getValid && getPasswordValid) ? false : true}
               >
               <Text style = {styles.text}>Login</Text>
-            </TouchableOpacity> 
+            </TouchableOpacity>
 
             <View style = {styles.conditionContainer}>
               <Text>
@@ -133,7 +133,7 @@ const LoginPage = (props: LoginScreenProps) => {
               <TouchableOpacity onPress={register}>
                 <Text style={styles.registerText}>Register</Text>
               </TouchableOpacity>
-            </View> 
+            </View>
           </View>
         </View>
       </GestureHandlerRootView>

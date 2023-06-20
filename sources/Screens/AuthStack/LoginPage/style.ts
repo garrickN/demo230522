@@ -4,7 +4,9 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
-
+    backgroundContainer:{
+      flex: 1,
+    },
     viewContainer:{
       position: 'relative',
       display: 'flex',
@@ -13,21 +15,21 @@ const styles = StyleSheet.create({
     },
 
     container: {
-      backgroundColor: "#eff0ee", 
+      backgroundColor: '#eff0ee',
       height: windowHeight * 75 / 100,
       width: windowWidth,
     },
 
     title: {
       fontSize: 24,
-      fontWeight: "bold",
+      fontWeight: 'bold',
       color: '#232322',
       marginVertical: 15,
     },
 
     content: {
       fontSize: 16,
-      fontWeight: "bold",
+      fontWeight: 'bold',
       color: '#7c7d7d',
     },
 
@@ -40,13 +42,13 @@ const styles = StyleSheet.create({
       marginTop: 10,
       marginHorizontal: 10,
       width: windowWidth * 95 / 100,
-      alignItems: "center",
+      alignItems: 'center',
       borderRadius:5,
     },
-    
+
     viewBottomContainer: {
-      backgroundColor: "#eff0ee", 
-      bottom: 0, 
+      backgroundColor: '#eff0ee',
+      bottom: 0,
       position: 'absolute',
       width: windowWidth * 95 / 100,
       height: windowHeight * 20 / 100,
@@ -66,16 +68,16 @@ const styles = StyleSheet.create({
 
     registerText: {
         color: '#87a4ff',
-        borderBottomColor: "#87a4ff",
+        borderBottomColor: '#87a4ff',
         borderBottomWidth: 0.5,
         bottom: -5,
-        alignItems: "center",
+        alignItems: 'center',
     },
 
     button: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: "#87a4ff",
+        backgroundColor: '#87a4ff',
         height: 50,
         width: '100%',
         paddingVertical: 15,
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
 
     text: {
         fontWeight: 'bold',
-        color: "#f7fdfe",
+        color: '#f7fdfe',
     },
 
     keyboardAvoidView: {

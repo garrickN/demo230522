@@ -27,10 +27,10 @@ const RegisterPage = (props: RegisterScreenProps) => {
 
   const [inputRef, setInputRef] = React.useState<OInputValid | null>();
   const [inputPasswordRef, setInputPasswordRef] = React.useState<OInputValid | null>();
-  const getValue = React.useMemo(()=> inputRef?.getValue,[inputRef])
-  const getPasswordValue = React.useMemo(()=> inputPasswordRef?.getValue,[inputPasswordRef])
-  const getValid = React.useMemo(()=> inputRef?.getValid,[inputRef])
-  const getPasswordValid = React.useMemo(()=> inputPasswordRef?.getValid,[inputPasswordRef])
+  const getValue = React.useMemo(()=> inputRef?.getValue,[inputRef]);
+  const getPasswordValue = React.useMemo(()=> inputPasswordRef?.getValue,[inputPasswordRef]);
+  const getValid = React.useMemo(()=> inputRef?.getValid,[inputRef]);
+  const getPasswordValid = React.useMemo(()=> inputPasswordRef?.getValid,[inputPasswordRef]);
 
   console.log(
     email.length,
@@ -38,8 +38,8 @@ const RegisterPage = (props: RegisterScreenProps) => {
     confirmPassword.length,
     fullname.length,
     phoneNumber.length,
-    "acc", getValue, getValid, 
-    "pass", getPasswordValue, getPasswordValid,
+    'acc', getValue, getValid,
+    'pass', getPasswordValue, getPasswordValid,
   );
 
   const setData = async () => {
@@ -66,23 +66,23 @@ const RegisterPage = (props: RegisterScreenProps) => {
 
   function handleEmailInputChange(text: string){
     setEmail(text);
-  };
+  }
 
   function handlePasswordInputChange(text: string){
     setPassword(text);
-  };
+  }
 
   function handleConfirmPasswordInputChange(text: string){
     setConfirmPassword(text);
-  };
+  }
 
   function handleFullnameInputChange(text: string){
     setFullname(text);
-  };
+  }
 
   function handlePhoneNumberInputChange(text: string){
     setPhoneNumber(text);
-  };
+  }
 
   const login = () => {
     if (getValid && getPasswordValid) {
@@ -133,7 +133,7 @@ const RegisterPage = (props: RegisterScreenProps) => {
                   <AppTextInput
                     label="Password"
                     placeHolder="Enter password"
-                    ref = {setInputPasswordRef} 
+                    ref = {setInputPasswordRef}
                     value = {6}
                     onChangeTextCallback={handlePasswordInputChange} />
                   <AppTextInput
@@ -153,7 +153,7 @@ const RegisterPage = (props: RegisterScreenProps) => {
                   <AppTextInput
                     label="Email"
                     placeHolder="Enter Your Email"
-                    ref = {setInputRef} 
+                    ref = {setInputRef}
                     value = {6}
                     onChangeTextCallback={handleEmailInputChange} />
                 </View>

@@ -110,7 +110,6 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		marginBottom: 5,
 	},
-})
+});
 
 export default styles;
-

@@ -4,7 +4,7 @@
 
 import 'react-native';
 import React from 'react';
-import App from '../App';
+import App from '../sources/com_miniapps_demoapp';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
