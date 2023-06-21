@@ -13,6 +13,7 @@ import styles from './style';
 import AppButton from '../../../Components/AppButton/AppButton';
 import AppTextInput, { OInputValid } from '../../../Components/AppTextInput/AppTextInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 interface RegisterScreenProps {
   navigation: any;
@@ -115,52 +116,59 @@ const RegisterPage = (props: RegisterScreenProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.avoidViewContainer}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={styles.keyboardAvoidView}>
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container1}>
-              <ScrollView>
-                <View style={styles.view1}>
-                  <Text style={styles.title}>
-                    Enter Registration Information
-                  </Text>
-                  <Text style={styles.content}>
-                    Please enter information to register an account
-                  </Text>
-                </View>
-                <View style={styles.view2}>
-                  <AppTextInput
-                    label="Password"
-                    placeHolder="Enter password"
-                    ref = {setInputPasswordRef}
-                    value = {6}
-                    onChangeTextCallback={handlePasswordInputChange} />
-                  <AppTextInput
-                    label="Confirm Password"
-                    placeHolder="Confirm Password"
-                    onChangeTextCallback={
-                      handleConfirmPasswordInputChange
-                    } />
-                  <AppTextInput
-                    label="Full Name"
-                    placeHolder="Enter Full Name"
-                    onChangeTextCallback={handleFullnameInputChange} />
-                  <AppTextInput
-                    label="Phone Number"
-                    placeHolder="Enter Phone Number"
-                    onChangeTextCallback={handlePhoneNumberInputChange} />
-                  <AppTextInput
-                    label="Email"
-                    placeHolder="Enter Your Email"
-                    ref = {setInputRef}
-                    value = {6}
-                    onChangeTextCallback={handleEmailInputChange} />
-                </View>
-              </ScrollView>
-            </View>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
+        <KeyboardAwareScrollView
+          enableOnAndroid = {true}
+          style = {{flex: 1}}
+        >
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.keyboardAvoidView}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+              <View style={styles.container1}>
+                <ScrollView>
+                  <View style={styles.view1}>
+                    <Text style={styles.title}>
+                      Enter Registration Information
+                    </Text>
+                    <Text style={styles.content}>
+                      Please enter information to register an account
+                    </Text>
+                  </View>
+                  <View style={styles.view2}>
+                    <AppTextInput
+                      label="Password"
+                      placeHolder="Enter password"
+                      ref = {setInputPasswordRef}
+                      value = {6}
+                      isPassword = {true}
+                      onChangeTextCallback={handlePasswordInputChange} />
+                    <AppTextInput
+                      label="Confirm Password"
+                      placeHolder="Confirm Password"
+                      isPassword = {true}
+                      onChangeTextCallback={
+                        handleConfirmPasswordInputChange
+                      }/>
+                    <AppTextInput
+                      label="Full Name"
+                      placeHolder="Enter Full Name"
+                      onChangeTextCallback={handleFullnameInputChange} />
+                    <AppTextInput
+                      label="Phone Number"
+                      placeHolder="Enter Phone Number"
+                      onChangeTextCallback={handlePhoneNumberInputChange} />
+                    <AppTextInput
+                      label="Email"
+                      placeHolder="Enter Your Email"
+                      ref = {setInputRef}
+                      value = {6}
+                      onChangeTextCallback={handleEmailInputChange} />
+                  </View>
+                </ScrollView>
+              </View>
+            </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
       </View>
 
       <View style={styles.container2}>

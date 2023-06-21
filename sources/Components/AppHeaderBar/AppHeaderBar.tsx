@@ -4,14 +4,13 @@ import {
     TouchableOpacity,
     StyleSheet,
     Text,
-    TextInput,
     View,
     Dimensions,
     Image,
 } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+//const windowHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
       rowHeaderBar: {
@@ -26,7 +25,7 @@ const styles = StyleSheet.create({
       },
       containerBackBtn: {
         position: 'absolute',
-        left: 0,  
+        left: 0,
         alignItems: 'center',
         margin: 10,
         width: windowWidth * 10 / 100,
@@ -43,8 +42,8 @@ const styles = StyleSheet.create({
           // backgroundColor: "red",
           width: 20,
           height: 20,
-      }
-})
+      },
+});
 
 const AppHeaderBar = (props: any) => {
     return (

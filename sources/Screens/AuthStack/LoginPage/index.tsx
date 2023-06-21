@@ -110,6 +110,7 @@ const LoginPage = (props: LoginScreenProps) => {
                           placeHolder="Input Password"
                           ref = {setInputPasswordRef}
                           value = {6}
+                          isPassword = {true}
                           onChangeTextCallback={handlePasswordInputChange} />
                       </View>
                     </View>

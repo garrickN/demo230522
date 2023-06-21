@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   view2: {
     marginTop: 10,
     marginHorizontal: 10,
-    marginBottom: 150,
+    marginBottom: 450,
     width: (windowWidth * 95) / 100,
     alignItems: 'center',
     borderRadius: 5,
