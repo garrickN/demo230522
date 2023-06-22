@@ -16,12 +16,26 @@ import AppTextInput from '../../../Components/AppTextInput/AppTextInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { OInputValid } from './InputValid';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import '../../../Helpers/AppLanguage/i18n';
+import { useTranslation } from 'react-i18next';
 
 interface LoginScreenProps {
   navigation: any;
 }
 
 const LoginPage = (props: LoginScreenProps) => {
+
+  const {t, i18n} = useTranslation();
+
+  // const [currentLanguage, setLanguage] = useState('en');
+
+  // const changeLanguage = value => {
+  //   i18n
+  //     .changeLanguage(value)
+  //     .then(() => setLanguage(value))
+  //     .catch(err => console.log(err));
+  // };
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [accessAccount, setAccess] = useState(false);
@@ -93,9 +107,9 @@ const LoginPage = (props: LoginScreenProps) => {
                   <View>
                     <View style={styles.container}>
                       <View style={styles.viewText}>
-                        <Text style={styles.title}>Let's Start Here</Text>
+                        <Text style={styles.title}>{i18n.t('labels.welcomeTitle', { name: 'John' })}</Text>
                         <Text style={styles.content}>
-                          Fill in your details to begin
+                        {i18n.t('labels.guideTitle')}
                         </Text>
                       </View>
                       <View style={styles.viewTextInput}>
