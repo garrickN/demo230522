@@ -1,8 +1,19 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import Backend from 'i18next-http-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import { translations } from '../../../languages/index';
+import translationEN from './translation.json';
+import translationVI from '../../Assets/locales/vi/strings.json';
+import translation_EN from '../../Assets/languages/en';
+import translation_VI from '../../Assets/languages/vi';
+
+import { Platform, NativeModules } from 'react-native';
+
+const deviceLanguage =
+      Platform.OS === 'ios'
+        ? NativeModules.SettingsManager.settings.AppleLocale ||
+          NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+        : NativeModules.I18nManager.localeIdentifier;
+
+const deviceLng = deviceLanguage.split('_')[0];
 
 type i18nBase =
   | 'labels'
@@ -13,41 +24,34 @@ type i18nBase =
   | 'languages';
 
 export type I18nApp = Record<
-  i18nBase,
-  Record<string, string | Record<string, string>>
+    i18nBase,
+    Record<string, string | Record<string, string>>
 >;
 
-const resources = {
-    'en-US': {
-      translation: translations.en,
+export const resources2 = {
+    en: {
+      translation: translation_EN,
     },
-    'vi-VN': {
-      translation: translations.vi,
+    vi: {
+      translation: translation_VI,
     },
-};
+}; //Typescript Types
 
-// var value = i18n.language;
-
-i18n
-    .use(initReactI18next)
-    .use(LanguageDetector)
-    .use(Backend)
-    .init({
-        debug: true,
-        lng: i18n.language,
-        fallbackLng: 'vi',
-        interpolation: {
-            escapeValue: false,
-        },
-        resources,
-        // Thông báo lỗi
-        detection: {
-            order: ['navigator'],
-        },
-        // KeySeparator và nsSeparator cho tệp ngôn ngữ
-        keySeparator: false,
-        nsSeparator: false,
+export const resources = {
+    en: {
+        translation: translationEN,
     },
-);
+    vi: {
+        translation: translationVI,
+    },
+}; //JSON Types
 
-export default i18n;
+i18n.use(initReactI18next).init({
+    debug: true,
+    resources: resources2,
+    lng: deviceLng,
+    fallbackLng: 'vi',
+    interpolation: {
+        escapeValue: false,
+    },
+});

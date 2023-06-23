@@ -1,4 +1,4 @@
-import type { I18nApp } from '../sources/Helpers/AppLanguage/i18n';
+import type { I18nApp } from '../../Helpers/AppLanguage/i18n';
 
 const en: I18nApp = {
   labels: {

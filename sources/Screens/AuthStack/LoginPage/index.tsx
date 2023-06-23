@@ -17,6 +17,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { OInputValid } from './InputValid';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import '../../../Helpers/AppLanguage/i18n';
+// import i18n from '../../../Helpers/AppLanguage/i18n';
 import { useTranslation } from 'react-i18next';
 
 interface LoginScreenProps {
@@ -25,8 +26,7 @@ interface LoginScreenProps {
 
 const LoginPage = (props: LoginScreenProps) => {
 
-  const {t, i18n} = useTranslation();
-
+  const { t } = useTranslation();
   // const [currentLanguage, setLanguage] = useState('en');
 
   // const changeLanguage = value => {
@@ -107,9 +107,9 @@ const LoginPage = (props: LoginScreenProps) => {
                   <View>
                     <View style={styles.container}>
                       <View style={styles.viewText}>
-                        <Text style={styles.title}>{i18n.t('labels.welcomeTitle', { name: 'John' })}</Text>
+                        <Text style={styles.title}>{t('labels.welcomeTitle', { name: 'John' })}</Text>
                         <Text style={styles.content}>
-                        {i18n.t('labels.guideTitle')}
+                        {t('labels.title')}
                         </Text>
                       </View>
                       <View style={styles.viewTextInput}>
