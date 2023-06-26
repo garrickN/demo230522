@@ -14,6 +14,7 @@ import AppButton from '../../../Components/AppButton/AppButton';
 import AppTextInput, { OInputValid } from '../../../Components/AppTextInput/AppTextInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useTheme } from '../../ThemeStack/index';
 
 interface RegisterScreenProps {
   navigation: any;
@@ -32,6 +33,8 @@ const RegisterPage = (props: RegisterScreenProps) => {
   const getPasswordValue = React.useMemo(()=> inputPasswordRef?.getValue,[inputPasswordRef]);
   const getValid = React.useMemo(()=> inputRef?.getValid,[inputRef]);
   const getPasswordValid = React.useMemo(()=> inputPasswordRef?.getValid,[inputPasswordRef]);
+
+  const {toggleThemeType, themeType, isDarkTheme, theme} = useTheme();
 
   console.log(
     email.length,
@@ -124,7 +127,7 @@ const RegisterPage = (props: RegisterScreenProps) => {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.keyboardAvoidView}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-              <View style={styles.container1}>
+              <View style={[styles.container1, {backgroundColor: theme.colors.red}]}>
                 <ScrollView>
                   <View style={styles.view1}>
                     <Text style={styles.title}>

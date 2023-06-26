@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     backgroundContainer:{
       flex: 1,
     },
+
     viewContainer:{
       position: 'relative',
       display: 'flex',

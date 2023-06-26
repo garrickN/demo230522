@@ -1,11 +1,11 @@
 import React from 'react';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
 import MyContactsScreen from '../Screens/ListViewStack/ContactPage';
 import RegisterPage from '../Screens/AuthStack/RegisterPage';
 import LoginPage from '../Screens/AuthStack/LoginPage';
 import InformationPage from '../Screens/ListViewStack/InformationPage';
 import { Easing } from 'react-native';
+import { ThemeContextProvider} from '../Screens/ThemeStack';
 
 const Stack = createStackNavigator();
 
@@ -30,24 +30,24 @@ const closeConfig = {
 } as any;
 
 const AppNavigator = () => (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login"
+    <ThemeContextProvider>
+      <Stack.Navigator
+        initialRouteName="Login"
         screenOptions={{
-          gestureEnabled: true,
-          gestureDirection: 'horizontal',
-          transitionSpec: {
-            open: config,
-            close: closeConfig,
-          },
-          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-        }}>
+        gestureEnabled: true,
+        gestureDirection: 'horizontal',
+        transitionSpec: {
+          open: config,
+          close: closeConfig,
+        },
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      }}>
         <Stack.Screen name="Login" component={LoginPage} options={{headerShown:false}}/>
         <Stack.Screen name="Contact" component={MyContactsScreen} options={{headerShown:false}}/>
         <Stack.Screen name="Register" component={RegisterPage}/>
         <Stack.Screen name="Information" component={InformationPage} options={{headerShown:false}}/>
       </Stack.Navigator>
-  </NavigationContainer>
-
+    </ThemeContextProvider>
 );
 
 export {AppNavigator};

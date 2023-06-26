@@ -19,6 +19,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import '../../../Helpers/AppLanguage/i18n';
 // import i18n from '../../../Helpers/AppLanguage/i18n';
 import { useTranslation } from 'react-i18next';
+import { useTheme } from '../../ThemeStack/index';
+import { Headline, Button } from 'react-native-paper';
 
 interface LoginScreenProps {
   navigation: any;
@@ -45,6 +47,8 @@ const LoginPage = (props: LoginScreenProps) => {
   const getPasswordValue = React.useMemo(()=> inputPasswordRef?.getValue,[inputPasswordRef]);
   const getValid = React.useMemo(()=> inputRef?.getValid,[inputRef]);
   const getPasswordValid = React.useMemo(()=> inputPasswordRef?.getValid,[inputPasswordRef]);
+
+  const {toggleThemeType, themeType, isDarkTheme, theme} = useTheme();
 
   React.useEffect(()=> {
     console.log('acc', getValue, getValid);
@@ -105,7 +109,7 @@ const LoginPage = (props: LoginScreenProps) => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <ScrollView>
                   <View>
-                    <View style={styles.container}>
+                    <View style={[styles.container, {backgroundColor: theme.colors.newPrimary}]}>
                       <View style={styles.viewText}>
                         <Text style={styles.title}>{t('labels.welcomeTitle', { name: 'John' })}</Text>
                         <Text style={styles.content}>
@@ -113,6 +117,10 @@ const LoginPage = (props: LoginScreenProps) => {
                         </Text>
                       </View>
                       <View style={styles.viewTextInput}>
+                        <Button mode="contained" onPress={toggleThemeType}>Toggle Theme</Button>
+                        <Headline>{themeType}</Headline>
+                        <Headline>isDarkTheme: {`${isDarkTheme}`}</Headline>
+                        <Headline>Primary: {theme.colors.red}</Headline>
                         <AppTextInput
                           label="E-mail"
                           placeHolder="Input Email"

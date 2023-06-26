@@ -23,7 +23,12 @@ const CounterScreen: React.FC<CounterScreenProps> = ({
   );
 };
 
-const mapStateToProps = (state: { counter: { counter: number } }) => {
+const mapStateToProps =
+  (state: {
+    counter: {
+      counter: number
+    }
+  }) => {
   return {
     counter: state.counter.counter,
   };
